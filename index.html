@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click for Stars</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #121212;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .star {
+            position: absolute;
+            color: yellow;
+            font-size: 100px;
+            user-select: none;
+            transition: opacity 0.8s, top ease 2s; 
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.body.addEventListener('click', function(e) {
+            const star = document.createElement('div');
+            star.textContent = '★';
+            star.className = 'star';
+            star.style.left = (e.clientX) + 'px';
+            star.style.top = (e.clientY) + 'px';
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.style.opacity = 0; 
+                star.style.top = (e.clientY + 1000) + 'px';
+
+                setTimeout(() => {
+                    star.remove();
+                }, 2000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
